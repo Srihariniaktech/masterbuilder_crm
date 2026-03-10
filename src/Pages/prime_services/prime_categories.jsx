@@ -156,8 +156,13 @@ function PrimeCategories() {
                                 isManPower = true;
                             }
 
+                            const catName = (cat?.name || "").toLowerCase().trim();
+                            const isMaterial = catName === "material" || String(cat.id || cat._id) === "4"; // Based on provided ID
+
                             if (isManPower) {
                                 navigate(`/manpower-details/${cat.id || cat._id}`);
+                            } else if (isMaterial) {
+                                navigate(`/material-products/${cat.id || cat._id}`);
                             } else {
                                 navigate(`/category-products/${cat.id || cat._id}`);
                             }
