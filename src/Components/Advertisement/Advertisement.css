@@ -1,0 +1,180 @@
+.ads-section {
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.ads-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.advertisement-container {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    z-index: 0;
+}
+
+.advertisement-container:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.ad-banner {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 12px;
+}
+
+.ad-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.ad-content {
+    color: white;
+    max-width: 500px;
+}
+
+.ad-content h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.ad-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.play-btn {
+    background: #ffc400;
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+    background: #e6b000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 196, 0, 0.4);
+}
+
+.play-icon {
+    font-size: 20px;
+}
+
+/* Modal Styling */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ad-video {
+    width: 100%;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+    z-index: 2001;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #ffc400;
+}
+
+.ad-skeleton {
+    height: 300px;
+    background: #eee;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+@media (max-width: 768px) {
+    .ad-overlay {
+        padding: 0 20px;
+    }
+
+    .ad-content h2 {
+        font-size: 24px;
+    }
+
+    .ad-content p {
+        font-size: 15px;
+    }
+
+    .ad-banner {
+        height: 250px;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+}
