@@ -88,7 +88,7 @@ function CategoryProducts() {
 
     return (
         <div style={styles.container}>
-            <button onClick={() => window.history.back()} style={styles.backBtn}>← Back to Categories</button>
+            <button onClick={() => window.history.back()} style={styles.backBtn}>&#8592;</button>
 
             <h2 style={styles.mainTitle}>{category ? category.name.toUpperCase() : "LOADING..."} PRODUCTS</h2>
 
@@ -159,7 +159,7 @@ const styles = {
     uploadBtnSvc: { background: "#000", color: "#fff", padding: "14px 25px", borderRadius: "12px", fontSize: "12px", fontWeight: "700", cursor: "pointer", whiteSpace: "nowrap" },
     submitBtn: { background: "#ffc400", color: "#000", padding: "15px 30px", border: "none", borderRadius: "12px", fontWeight: "900", cursor: "pointer", fontSize: "15px" },
     cancelBtn: { background: "#f1f5f9", color: "#475569", padding: "15px 25px", border: "none", borderRadius: "12px", fontWeight: "800", cursor: "pointer", fontSize: "14px" },
-    backBtn: { background: "none", border: "none", color: "#ffc400", fontWeight: "700", cursor: "pointer", marginBottom: "20px", fontSize: "16px", padding: 0 },
+    backBtn: { backgroundColor: "#fff", color: "#000", border: "1px solid #eee", width: "40px", height: "40px", borderRadius: "50%", cursor: "pointer", fontWeight: "900", fontSize: "20px", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: "20px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)" },
     categoryGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "25px" },
     productCard: { background: "#fff", borderRadius: "16px", border: "1px solid #f1f5f9", overflow: "hidden", transition: "all 0.3s", boxShadow: "0 4px 12px rgba(0,0,0,0.03)" },
     prodImageContainer: { height: "180px", background: "#f8fafc", overflow: "hidden" },

@@ -330,12 +330,7 @@ function PrimeService() {
               key={id || i}
               style={styles.serviceCard}
               onClick={() => {
-                if (s.name?.toLowerCase() === "builders") {
-                  alert("Builders management is handled separately (not using Categories).");
-                  // navigate("/builders-management"); // Example of where you might want to go
-                } else {
-                  navigate(`/prime-categories/${id}`);
-                }
+                navigate(`/prime-categories/${id}`);
               }}
             >
               <img src={s.imageUrl || noImage} alt="s" style={styles.sImg} />
@@ -343,8 +338,20 @@ function PrimeService() {
                 <h4 style={{ margin: "0 0 5px 0", color: "#000", fontWeight: "900" }}>{s.name}</h4>
                 <p style={styles.badgeSvc}>Order {s.orderno}</p>
                 <div style={{ display: "flex", gap: "10px" }}>
-                  <button onClick={(e) => { e.stopPropagation(); setFormData({ orderno: s.orderno, name: s.name, imageUrl: s.imageUrl }); setEditId(id); window.scrollTo(0, 0); }} style={styles.editBtn}>EDIT</button>
-                  <button onClick={(e) => { e.stopPropagation(); axios.delete(`${API_URL}/${id}`).then(fetchServices); }} style={styles.delBtn}>DEL</button>
+                  <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); setFormData({ orderno: s.orderno, name: s.name, imageUrl: s.imageUrl }); setEditId(id); window.scrollTo(0, 0); }} style={styles.editBtn}>EDIT</button>
+                  <button onClick={async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (window.confirm("Delete this Prime Service and all its categories?")) {
+                      try {
+                        await axios.delete(`${API_URL}/${id}`);
+                        alert("✅ Service Deleted!");
+                        fetchServices();
+                      } catch (err) {
+                        alert("❌ Error: " + (err.response?.data?.message || err.message));
+                      }
+                    }
+                  }} style={styles.delBtn}>DEL</button>
                 </div>
               </div>
             </div>

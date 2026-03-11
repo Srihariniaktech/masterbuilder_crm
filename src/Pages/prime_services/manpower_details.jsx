@@ -140,7 +140,7 @@ function ManpowerDetails() {
         <div style={styles.container}>
             {/* Header with Back Button */}
             <div style={styles.headerRow}>
-                <button onClick={() => navigate(-1)} style={styles.backBtn}>←</button>
+                <button onClick={() => navigate(-1)} style={styles.backBtn}>&#8592;</button>
                 <h2 style={styles.pageTitle}>{category ? category.name : "Category"} Details</h2>
             </div>
 
@@ -348,7 +348,16 @@ function ManpowerDetails() {
 
                             {/* CRM MANAGEMENT ACTIONS */}
                             <div style={styles.mgmtRow}>
-                                <button onClick={() => { setEditId(worker.id || worker._id); setFormData(worker); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={styles.editMgmtBtn}>Modify Profile</button>
+                                <button onClick={() => {
+                                    setEditId(worker.id || worker._id);
+                                    setFormData({
+                                        ...worker,
+                                        rating: worker.services?.manualRating ?? worker.rating ?? "",
+                                        reviewsCount: worker.services?.manualReviewsCount ?? worker.reviewsCount ?? "",
+                                        services: worker.services || { s1: "", s2: "", s3: "", s4: "" }
+                                    });
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }} style={styles.editMgmtBtn}>Modify Profile</button>
                                 <button onClick={() => handleDelete(worker.id || worker._id)} style={styles.delMgmtBtn}>Remove User</button>
                             </div>
                         </div>
@@ -362,7 +371,7 @@ function ManpowerDetails() {
 const styles = {
     container: { padding: "40px", backgroundColor: "#fbfbfb", minHeight: "100vh", fontFamily: "'Inter', sans-serif" },
     headerRow: { display: "flex", alignItems: "center", gap: "25px", marginBottom: "35px" },
-    backBtn: { backgroundColor: "#fff", border: "1px solid #eee", width: "45px", height: "45px", borderRadius: "50%", fontSize: "20px", fontWeight: "900", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(0,0,0,0.05)" },
+    backBtn: { backgroundColor: "#fff", color: "#000", border: "1px solid #eee", width: "40px", height: "40px", borderRadius: "50%", cursor: "pointer", fontWeight: "900", fontSize: "20px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(0,0,0,0.05)" },
     pageTitle: { fontSize: "32px", fontWeight: "900", color: "#111", letterSpacing: "-1px" },
 
     formSection: { backgroundColor: "#fff", padding: "35px", borderRadius: "24px", boxShadow: "0 10px 40px rgba(0,0,0,0.04)", border: "1px solid #f0f0f0", marginBottom: "50px" },

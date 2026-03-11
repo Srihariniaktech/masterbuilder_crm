@@ -47,6 +47,8 @@ import PrimeService from "./Pages/prime_services/prime_services.jsx";
 import PrimeCategories from "./Pages/prime_services/prime_categories.jsx";
 import CategoryProducts from "./Pages/prime_services/category_products.jsx";
 import ManpowerDetails from "./Pages/prime_services/manpower_details.jsx";
+import BuilderDetails from "./Pages/prime_services/builder_details.jsx";
+import DemolatorDetails from "./Pages/prime_services/demolators_details.jsx";
 import MaterialProducts from "./Pages/prime_services/material_products.jsx";
 import MaterialProductDetails from "./Pages/prime_services/material_product_details.jsx";
 import "./App.css";
@@ -66,6 +68,8 @@ function App() {
             <Route path="/material-products/:categoryId" element={<MaterialProducts />} />
             <Route path="/material-product-details/:productId" element={<MaterialProductDetails />} />
             <Route path="/manpower-details/:categoryId" element={<ManpowerDetails />} />
+            <Route path="/builder-details/:categoryId" element={<BuilderDetails />} />
+            <Route path="/demolator-details/:categoryId" element={<DemolatorDetails />} />
           </Routes>
         </div>
       </div>

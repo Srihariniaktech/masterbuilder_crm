@@ -137,7 +137,7 @@ function MaterialProductDetails() {
 
                 {/* BACK BUTTON AND HEADER FOR THE PAGE */}
                 <div style={styles.pageHeader}>
-                    <button onClick={() => navigate(-1)} style={styles.backButton}>← Back</button>
+                    <button onClick={() => navigate(-1)} style={styles.backButton}>&#8592;</button>
                     <h2>Material Details Management</h2>
                 </div>
 
@@ -333,7 +333,7 @@ const styles = {
     pageContainer: { backgroundColor: "#f0f2f5", minHeight: "100vh", fontFamily: "'Inter', sans-serif" },
     contentWrapper: { maxWidth: "1200px", margin: "0 auto", padding: "40px" },
     pageHeader: { display: "flex", alignItems: "center", gap: "20px", marginBottom: "30px" },
-    backButton: { background: "#fff", border: "1px solid #ddd", padding: "10px 20px", borderRadius: "8px", cursor: "pointer", fontWeight: "bold" },
+    backButton: { backgroundColor: "#fff", color: "#000", border: "1px solid #eee", width: "40px", height: "40px", borderRadius: "50%", cursor: "pointer", fontWeight: "900", fontSize: "20px", display: "inline-flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 10px rgba(0,0,0,0.05)" },
     loadingContainer: { display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", fontSize: "18px", fontFamily: "sans-serif" },
 
     // Form Styles

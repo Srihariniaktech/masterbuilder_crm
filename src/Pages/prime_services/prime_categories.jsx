@@ -117,7 +117,7 @@ function PrimeCategories() {
 
     return (
         <div style={styles.container}>
-            <button onClick={() => navigate("/prime-services")} style={styles.backBtn}>← Back to Services</button>
+            <button onClick={() => navigate("/prime-services")} style={styles.backBtn}>&#8592;</button>
 
             <h2 style={styles.mainTitle}>{service ? service.name.toUpperCase() : "LOADING..."} CATEGORIES</h2>
 
@@ -149,18 +149,26 @@ function PrimeCategories() {
                             // Find the parent service directly from state
                             const svcName = (service?.name || "").toLowerCase().replace(/\s/g, "");
                             let isManPower = svcName.includes("manpower");
+                            let isBuilder = svcName.includes("builders");
+                            let isDemolator = svcName.includes("demolator");
 
                             // Fallback logic if 'service' is inexplicably null but we have categories
                             // Man Power service ID from the API is typically 4.
-                            if (!service && String(serviceId) === "4") {
-                                isManPower = true;
+                            if (!service) {
+                                if (String(serviceId) === "4") isManPower = true;
+                                if (String(serviceId) === "13") isBuilder = true;
+                                if (String(serviceId) === "14") isDemolator = true; // Assuming 14 is Demolator as an example, but we rely on name first
                             }
 
                             const catName = (cat?.name || "").toLowerCase().trim();
                             const isMaterial = catName === "material" || String(cat.id || cat._id) === "4"; // Based on provided ID
 
-                            if (isManPower) {
+                            if (isDemolator || catName.includes("demolator")) {
+                                navigate(`/demolator-details/${cat.id || cat._id}`);
+                            } else if (isManPower) {
                                 navigate(`/manpower-details/${cat.id || cat._id}`);
+                            } else if (isBuilder) {
+                                navigate(`/builder-details/${cat.id || cat._id}`);
                             } else if (isMaterial) {
                                 navigate(`/material-products/${cat.id || cat._id}`);
                             } else {
@@ -179,13 +187,13 @@ function PrimeCategories() {
                             </div>
                             <div style={styles.prodActions}>
                                 <button
-                                    onClick={(e) => { e.stopPropagation(); setCatEditId(cat.id || cat._id); setCatFormData({ name: cat.name, orderno: cat.orderno, imageurl: cat.imageurl }); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCatEditId(cat.id || cat._id); setCatFormData({ name: cat.name, orderno: cat.orderno, imageurl: cat.imageurl }); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                     style={styles.prodEdit}
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    onClick={(e) => { e.stopPropagation(); handleCategoryDelete(cat.id || cat._id); }}
+                                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleCategoryDelete(cat.id || cat._id); }}
                                     style={styles.prodDel}
                                 >
                                     Delete
@@ -211,7 +219,7 @@ const styles = {
     uploadBtnSvc: { background: "#000", color: "#fff", padding: "14px 25px", borderRadius: "12px", fontSize: "12px", fontWeight: "700", cursor: "pointer", whiteSpace: "nowrap" },
     submitBtn: { background: "#ffc400", color: "#000", padding: "15px 30px", border: "none", borderRadius: "12px", fontWeight: "900", cursor: "pointer", fontSize: "15px" },
     cancelBtn: { background: "#f1f5f9", color: "#475569", padding: "15px 25px", border: "none", borderRadius: "12px", fontWeight: "800", cursor: "pointer", fontSize: "14px" },
-    backBtn: { background: "none", border: "none", color: "#ffc400", fontWeight: "700", cursor: "pointer", marginBottom: "20px", fontSize: "16px", padding: 0 },
+    backBtn: { backgroundColor: "#fff", color: "#000", border: "1px solid #eee", width: "40px", height: "40px", borderRadius: "50%", cursor: "pointer", fontWeight: "900", fontSize: "20px", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: "20px", boxShadow: "0 2px 10px rgba(0,0,0,0.05)" },
     categoryGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "25px" },
     productCard: { background: "#fff", borderRadius: "16px", border: "1px solid #f1f5f9", overflow: "hidden", transition: "all 0.3s", boxShadow: "0 4px 12px rgba(0,0,0,0.03)" },
     prodImageContainer: { height: "180px", background: "#f8fafc", overflow: "hidden" },
