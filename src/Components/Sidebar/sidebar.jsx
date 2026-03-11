@@ -24,6 +24,13 @@ function Sidebar({ isOpen, toggleSidebar }) {
                 >
                     Prime Services
                 </Link>
+                <Link
+                    to="/blog-management"
+                    className={location.pathname === "/blog-management" ? "active" : ""}
+                    onClick={toggleSidebar}
+                >
+                    Blogs
+                </Link>
                 <Link to="#" onClick={toggleSidebar}>Properties</Link>
                 <Link to="#" onClick={toggleSidebar}>Bookings</Link>
                 <Link to="#" onClick={toggleSidebar}>Settings</Link>

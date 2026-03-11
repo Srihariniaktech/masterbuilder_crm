@@ -51,6 +51,9 @@ import BuilderDetails from "./Pages/prime_services/builder_details.jsx";
 import DemolatorDetails from "./Pages/prime_services/demolators_details.jsx";
 import MaterialProducts from "./Pages/prime_services/material_products.jsx";
 import MaterialProductDetails from "./Pages/prime_services/material_product_details.jsx";
+import BlogManagement from "./Pages/prime_services/blog_management.jsx";
+import RenovationDetails from "./Pages/prime_services/renovation_details.jsx";
+import RenovationProductDetails from "./Pages/prime_services/renovation_product_details.jsx";
 import "./App.css";
 
 function App() {
@@ -70,6 +73,9 @@ function App() {
             <Route path="/manpower-details/:categoryId" element={<ManpowerDetails />} />
             <Route path="/builder-details/:categoryId" element={<BuilderDetails />} />
             <Route path="/demolator-details/:categoryId" element={<DemolatorDetails />} />
+            <Route path="/blog-management" element={<BlogManagement />} />
+            <Route path="/renovation-details/:categoryId" element={<RenovationDetails />} />
+            <Route path="/renovation-product-details/:productId" element={<RenovationProductDetails />} />
           </Routes>
         </div>
       </div>
