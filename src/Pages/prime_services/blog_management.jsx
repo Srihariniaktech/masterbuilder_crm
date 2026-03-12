@@ -366,9 +366,9 @@ const styles = {
 
     /* Blog Card Styles mapped from design */
     blogGrid: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "40px"
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap: "28px"
     },
     blogCard: {
         backgroundColor: "#fff",
@@ -378,9 +378,10 @@ const styles = {
         border: "1px solid #f1f5f9",
     },
     cardImageArea: {
-        height: "400px",
+        height: "220px",
         backgroundColor: "#f8fafc",
-        position: "relative"
+        position: "relative",
+        overflow: "hidden"
     },
     cardBanner: {
         width: "100%",
@@ -388,34 +389,38 @@ const styles = {
         objectFit: "cover"
     },
     cardContent: {
-        padding: "40px",
+        padding: "24px",
     },
     categoryBadge: {
         backgroundColor: "#ffc400",
         color: "#000",
-        padding: "8px 16px",
+        padding: "6px 14px",
         borderRadius: "8px",
-        fontSize: "12px",
+        fontSize: "11px",
         fontWeight: "900",
         display: "inline-block",
-        marginBottom: "20px"
+        marginBottom: "14px"
     },
     blogTitle: {
-        fontSize: "36px",
-        fontWeight: "900",
-        color: "#000",
-        marginBottom: "15px",
-        lineHeight: "1.2"
+        fontSize: "20px",
+        fontWeight: "800",
+        color: "#1e293b",
+        marginBottom: "10px",
+        lineHeight: "1.3",
+        display: "-webkit-box",
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden"
     },
     metaRow: {
         display: "flex",
-        gap: "25px",
+        gap: "18px",
         color: "#94a3b8",
-        fontSize: "14px",
+        fontSize: "13px",
         fontWeight: "600",
-        marginBottom: "30px",
+        marginBottom: "14px",
         borderBottom: "1px solid #f1f5f9",
-        paddingBottom: "25px"
+        paddingBottom: "14px"
     },
     metaItem: {
         display: "flex",
@@ -423,16 +428,20 @@ const styles = {
         gap: "8px"
     },
     blogDescription: {
-        color: "#475569",
-        fontSize: "18px",
-        lineHeight: "1.7",
-        marginBottom: "35px"
+        color: "#64748b",
+        fontSize: "14px",
+        lineHeight: "1.6",
+        marginBottom: "18px",
+        display: "-webkit-box",
+        WebkitLineClamp: 3,
+        WebkitBoxOrient: "vertical",
+        overflow: "hidden"
     },
     cardFooter: {
         display: "flex",
-        gap: "15px",
+        gap: "10px",
         borderTop: "1px solid #f1f5f9",
-        paddingTop: "25px"
+        paddingTop: "16px"
     },
     btnEdit: {
         flex: 1,

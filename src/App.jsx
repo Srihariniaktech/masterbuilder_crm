@@ -54,6 +54,7 @@ import MaterialProductDetails from "./Pages/prime_services/material_product_deta
 import BlogManagement from "./Pages/prime_services/blog_management.jsx";
 import RenovationDetails from "./Pages/prime_services/renovation_details.jsx";
 import RenovationProductDetails from "./Pages/prime_services/renovation_product_details.jsx";
+import ProjectsTenders from "./Pages/prime_services/projects_tenders.jsx";
 import "./App.css";
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
             <Route path="/blog-management" element={<BlogManagement />} />
             <Route path="/renovation-details/:categoryId" element={<RenovationDetails />} />
             <Route path="/renovation-product-details/:productId" element={<RenovationProductDetails />} />
+            <Route path="/projects-tenders" element={<ProjectsTenders />} />
           </Routes>
         </div>
       </div>

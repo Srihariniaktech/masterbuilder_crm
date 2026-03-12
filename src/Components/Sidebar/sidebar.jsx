@@ -31,6 +31,13 @@ function Sidebar({ isOpen, toggleSidebar }) {
                 >
                     Blogs
                 </Link>
+                <Link
+                    to="/projects-tenders"
+                    className={location.pathname === "/projects-tenders" ? "active" : ""}
+                    onClick={toggleSidebar}
+                >
+                    Projects & Tenders
+                </Link>
                 <Link to="#" onClick={toggleSidebar}>Properties</Link>
                 <Link to="#" onClick={toggleSidebar}>Bookings</Link>
                 <Link to="#" onClick={toggleSidebar}>Settings</Link>

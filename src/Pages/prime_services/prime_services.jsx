@@ -18,10 +18,30 @@ const getUrl = (val) => {
 };
 
 // Helper: normalise whatever the backend returns for imageUrl / videoUrl into arrays
+// The API may return deeply-stringified JSON like: "[\"url\"]" or "[\"[\\\"url1\\\",\\\"url2\\\"]\"]"
 const toArray = (val) => {
   if (!val) return [];
-  if (Array.isArray(val)) return val;
-  return [val];
+  if (Array.isArray(val)) {
+    // Recursively flatten any nested stringified arrays
+    return val.flatMap((item) => toArray(item));
+  }
+  if (typeof val === "string") {
+    const trimmed = val.trim();
+    // Try to parse as JSON if it looks like an array or object
+    if (trimmed.startsWith("[") || trimmed.startsWith("{")) {
+      try {
+        const parsed = JSON.parse(trimmed);
+        return toArray(parsed); // recurse in case of double-stringification
+      } catch {
+        // Not valid JSON, treat as a plain URL string
+      }
+    }
+    // It's a plain URL string
+    if (trimmed) return [trimmed];
+    return [];
+  }
+  if (typeof val === "object" && val.url) return [val.url];
+  return [];
 };
 
 function PrimeService() {

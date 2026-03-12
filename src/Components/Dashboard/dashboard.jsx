@@ -15,21 +15,38 @@ function Dashboard() {
         <div className="page">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
                 <h1>Dashboard Overview</h1>
-                <button
-                    onClick={() => navigate("/blog-management")}
-                    style={{
-                        padding: "10px 20px",
-                        backgroundColor: "#ffc400",
-                        color: "#000",
-                        border: "none",
-                        borderRadius: "8px",
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                        boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
-                    }}
-                >
-                    📝 Manage Blogs
-                </button>
+                <div style={{ display: "flex", gap: "12px" }}>
+                    <button
+                        onClick={() => navigate("/projects-tenders")}
+                        style={{
+                            padding: "10px 20px",
+                            backgroundColor: "#000",
+                            color: "#ffc400",
+                            border: "none",
+                            borderRadius: "8px",
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+                        }}
+                    >
+                        🏗️ Projects & Tenders
+                    </button>
+                    <button
+                        onClick={() => navigate("/blog-management")}
+                        style={{
+                            padding: "10px 20px",
+                            backgroundColor: "#ffc400",
+                            color: "#000",
+                            border: "none",
+                            borderRadius: "8px",
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
+                        }}
+                    >
+                        📝 Manage Blogs
+                    </button>
+                </div>
             </div>
 
 
