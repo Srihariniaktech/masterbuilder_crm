@@ -271,20 +271,35 @@ function PrimeService() {
 
           <div style={styles.section}>
             <p style={styles.sectionLabel}>▶️ YOUTUBE LINKS</p>
-            {adForm.youtubeLinks.map((link, i) => (
-              <div key={i} style={{ ...styles.flexGroup, marginBottom: "10px" }}>
-                <input
-                  type="text"
-                  placeholder={`YouTube URL #${i + 1}`}
-                  value={link}
-                  onChange={e => updateYtLink(i, e.target.value)}
-                  style={styles.inputSmall}
-                />
-                {adForm.youtubeLinks.length > 1 && (
-                  <button type="button" onClick={() => removeYtLink(i)} style={styles.removeBtn}>✕</button>
-                )}
-              </div>
-            ))}
+            {adForm.youtubeLinks.map((link, i) => {
+              const ytId = getYouTubeID(link);
+              return (
+                <div key={i} style={{ marginBottom: "15px" }}>
+                  <div style={styles.flexGroup}>
+                    <input
+                      type="text"
+                      placeholder={`YouTube URL #${i + 1}`}
+                      value={link}
+                      onChange={e => updateYtLink(i, e.target.value)}
+                      style={styles.inputSmall}
+                    />
+                    {adForm.youtubeLinks.length > 1 && (
+                      <button type="button" onClick={() => removeYtLink(i)} style={styles.removeBtn}>✕</button>
+                    )}
+                  </div>
+                  {ytId && (
+                    <div style={styles.formYtPreview}>
+                      <img 
+                        src={`https://img.youtube.com/vi/${ytId}/0.jpg`} 
+                        alt="preview" 
+                        style={styles.formYtThumb} 
+                      />
+                      <span style={{ fontSize: "11px", color: "#64748b" }}>YouTube ID: {ytId}</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
             <button type="button" onClick={addYtLink} style={styles.addLinkBtn}>+ ADD LINK</button>
           </div>
 
@@ -308,7 +323,37 @@ function PrimeService() {
           return (
             <div key={ad.id || ad._id || i} style={styles.adCard}>
               <div style={styles.imgStrip}>
-                {images.length > 0 ? images.map((img, j) => <img key={j} src={getUrl(img)} alt="ad" style={styles.stripImg} />) : <div style={styles.noMediaStub}>No Images</div>}
+                {/* Render Images */}
+                {images.map((img, idx) => (
+                  <img key={`img-${idx}`} src={getUrl(img)} alt="ad" style={styles.stripImg} />
+                ))}
+                
+                {/* Render Videos (Thumbnails) */}
+                {videos.map((vid, idx) => {
+                  const ytId = getYouTubeID(getUrl(vid));
+                  if (ytId) {
+                    return (
+                      <div key={`vid-${idx}`} style={{ ...styles.stripImg, position: "relative" }}>
+                        <img 
+                          src={`https://img.youtube.com/vi/${ytId}/0.jpg`} 
+                          alt="yt-thumb" 
+                          style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                        />
+                        <div style={styles.playOverlay}>▶</div>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={`vid-${idx}`} style={styles.noMediaStub}>
+                      <span style={{ fontSize: "10px" }}>Video</span>
+                    </div>
+                  );
+                })}
+
+                {/* Empty State */}
+                {images.length === 0 && videos.length === 0 && (
+                  <div style={styles.noMediaStub}>No Media content</div>
+                )}
               </div>
               <div style={styles.cardMeta}>
                 <span style={styles.badge}>Page {ad.pageNumber}</span>
@@ -419,6 +464,19 @@ const styles = {
   delBtn: { flex: 1, background: "#f44336", color: "#fff", padding: "14px", borderRadius: "10px", fontWeight: "800", border: "none", cursor: "pointer" },
   inputStyle: { padding: "14px 18px", border: "1px solid #cbd5e0", borderRadius: "12px", width: "100%", boxSizing: "border-box", outline: "none" },
   uploadBtnSvc: { background: "#000", color: "#fff", padding: "14px 25px", borderRadius: "12px", fontSize: "12px", fontWeight: "700", cursor: "pointer", whiteSpace: "nowrap" },
+  
+  playOverlay: {
+    position: "absolute", top: "50%", left: "50%",
+    transform: "translate(-50%, -50%)", background: "rgba(0,0,0,0.6)",
+    color: "#fff", width: "32px", height: "32px", borderRadius: "50%",
+    display: "flex", alignItems: "center", justifyContent: "center",
+    fontSize: "14px", border: "1.5px solid #fff", pointerEvents: "none"
+  },
+  formYtPreview: {
+    marginTop: "8px", display: "flex", alignItems: "center", gap: "10px",
+    background: "#fff", padding: "8px", borderRadius: "10px", border: "1px solid #e2e8f0"
+  },
+  formYtThumb: { width: "60px", height: "40px", borderRadius: "6px", objectFit: "cover" },
 };
 
 export default PrimeService;
