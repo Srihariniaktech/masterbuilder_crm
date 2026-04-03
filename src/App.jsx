@@ -42,7 +42,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./Components/Sidebar/sidebar.jsx";
-import Dashboard from "./Components/Dashboard/dashboard.jsx";
 import PrimeService from "./Pages/prime_services/prime_services.jsx";
 import PrimeCategories from "./Pages/prime_services/prime_categories.jsx";
 import CategoryProducts from "./Pages/prime_services/category_products.jsx";
@@ -55,6 +54,8 @@ import BlogManagement from "./Pages/prime_services/blog_management.jsx";
 import RenovationDetails from "./Pages/prime_services/renovation_details.jsx";
 import RenovationProductDetails from "./Pages/prime_services/renovation_product_details.jsx";
 import ProjectsTenders from "./Pages/prime_services/projects_tenders.jsx";
+import FormListing from "./Pages/Form/FormListing.jsx";
+import ManpowerApplication from "./Pages/Form/ManpowerApplication.jsx";
 import "./App.css";
 
 function App() {
@@ -65,7 +66,7 @@ function App() {
 
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<FormListing />} />
             <Route path="/prime-services" element={<PrimeService />} />
             <Route path="/prime-categories/:serviceId" element={<PrimeCategories />} />
             <Route path="/category-products/:categoryId" element={<CategoryProducts />} />
@@ -78,6 +79,8 @@ function App() {
             <Route path="/renovation-details/:categoryId" element={<RenovationDetails />} />
             <Route path="/renovation-product-details/:productId" element={<RenovationProductDetails />} />
             <Route path="/projects-tenders" element={<ProjectsTenders />} />
+            <Route path="/forms" element={<FormListing />} />
+            <Route path="/manpower-application" element={<ManpowerApplication />} />
           </Routes>
         </div>
       </div>

@@ -11,13 +11,6 @@ function Sidebar({ isOpen, toggleSidebar }) {
             </div>
             <nav>
                 <Link
-                    to="/"
-                    className={location.pathname === "/" ? "active" : ""}
-                    onClick={toggleSidebar}
-                >
-                    Dashboard
-                </Link>
-                <Link
                     to="/prime-services"
                     className={location.pathname === "/prime-services" ? "active" : ""}
                     onClick={toggleSidebar}
@@ -37,6 +30,13 @@ function Sidebar({ isOpen, toggleSidebar }) {
                     onClick={toggleSidebar}
                 >
                     Projects & Tenders
+                </Link>
+                <Link
+                    to="/forms"
+                    className={location.pathname === "/forms" || location.pathname === "/" ? "active" : ""}
+                    onClick={toggleSidebar}
+                >
+                    Forms
                 </Link>
                 <Link to="#" onClick={toggleSidebar}>Properties</Link>
                 <Link to="#" onClick={toggleSidebar}>Bookings</Link>
