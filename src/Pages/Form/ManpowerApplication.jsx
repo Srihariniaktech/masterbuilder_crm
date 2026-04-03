@@ -16,7 +16,9 @@ const ManpowerApplication = () => {
         try {
             const response = await axios.get("https://masterbuilder-backend.onrender.com/api/manpower/apply");
             if (response.data.success) {
-                setApplications(response.data.data);
+                // Ensure data is sorted by ID ascending
+                const sortedData = response.data.data.sort((a, b) => a.id - b.id);
+                setApplications(sortedData);
             }
         } catch (error) {
             console.error("Error fetching manpower applications:", error);
@@ -43,42 +45,18 @@ const ManpowerApplication = () => {
             title: "ID",
             dataIndex: "id",
             key: "id",
-            width: 70,
-            sorter: (a, b) => a.id - b.id,
-        },
-        {
-            title: "Skill",
-            dataIndex: "skill",
-            key: "skill",
-            render: (text) => <Tag color="blue">{text}</Tag>,
-        },
-        {
-            title: "Email",
-            dataIndex: "email",
-            key: "email",
-        },
-        {
-            title: "Phone",
-            dataIndex: "mobilenumber",
-            key: "mobilenumber",
-        },
-        {
-            title: "Workers",
-            dataIndex: "no_of_workers",
-            key: "no_of_workers",
-            sorter: (a, b) => a.no_of_workers - b.no_of_workers,
-        },
-        {
-            title: "City",
-            dataIndex: "city",
-            key: "city",
+            width: 100,
         },
         {
             title: "Date",
             dataIndex: "createdAt",
             key: "createdAt",
             render: (date) => new Date(date).toLocaleDateString(),
-            sorter: (a, b) => new Date(a.createdAt) - new Date(b.createdAt),
+        },
+        {
+            title: "Workers",
+            dataIndex: "no_of_workers",
+            key: "no_of_workers",
         },
         {
             title: "Action",
@@ -123,6 +101,7 @@ const ManpowerApplication = () => {
                         rowKey="id" 
                         pagination={{ pageSize: 10 }}
                         style={{ background: "#fff" }}
+                        showSorterTooltip={false}
                     />
                 ) : (
                     <Empty description="No applications found" />
